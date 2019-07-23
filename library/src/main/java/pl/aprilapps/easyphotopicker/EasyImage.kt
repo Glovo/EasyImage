@@ -35,22 +35,54 @@ class EasyImage private constructor(
         else -> null
     }
 
-    private fun startChooser(caller: Any) {
+    private fun startFragmentChooser(fragment: android.app.Fragment) {
         cleanup()
-        getCallerActivity(caller)?.let { activity ->
-            try {
-                lastCameraFile = Files.createCameraPictureFile(context)
-                val intent = Intents.createChooserIntent(
-                        context = activity,
-                        chooserTitle = chooserTitle,
-                        chooserType = chooserType,
-                        cameraFileUri = lastCameraFile!!.uri,
-                        allowMultiple = allowMultiple)
-                activity.startActivityForResult(intent, RequestCodes.PICK_PICTURE_FROM_CHOOSER)
-            } catch (error: IOException) {
-                error.printStackTrace()
-                cleanup()
-            }
+        try {
+            lastCameraFile = Files.createCameraPictureFile(context)
+            val intent = Intents.createChooserIntent(
+                    context = fragment.activity,
+                    chooserTitle = chooserTitle,
+                    chooserType = chooserType,
+                    cameraFileUri = lastCameraFile!!.uri,
+                    allowMultiple = allowMultiple)
+            fragment.startActivityForResult(intent, RequestCodes.PICK_PICTURE_FROM_CHOOSER)
+        } catch (error: IOException) {
+            error.printStackTrace()
+            cleanup()
+        }
+    }
+
+    private fun startFragmentChooser(fragment: Fragment) {
+        cleanup()
+        try {
+            lastCameraFile = Files.createCameraPictureFile(context)
+            val intent = Intents.createChooserIntent(
+                    context = fragment.requireContext(),
+                    chooserTitle = chooserTitle,
+                    chooserType = chooserType,
+                    cameraFileUri = lastCameraFile!!.uri,
+                    allowMultiple = allowMultiple)
+            fragment.startActivityForResult(intent, RequestCodes.PICK_PICTURE_FROM_CHOOSER)
+        } catch (error: IOException) {
+            error.printStackTrace()
+            cleanup()
+        }
+    }
+
+    private fun startActivityChooser(activity: Activity) {
+        cleanup()
+        try {
+            lastCameraFile = Files.createCameraPictureFile(context)
+            val intent = Intents.createChooserIntent(
+                    context = activity,
+                    chooserTitle = chooserTitle,
+                    chooserType = chooserType,
+                    cameraFileUri = lastCameraFile!!.uri,
+                    allowMultiple = allowMultiple)
+            activity.startActivityForResult(intent, RequestCodes.PICK_PICTURE_FROM_CHOOSER)
+        } catch (error: IOException) {
+            error.printStackTrace()
+            cleanup()
         }
     }
 
@@ -103,9 +135,9 @@ class EasyImage private constructor(
         }
     }
 
-    fun openChooser(activity: Activity) = startChooser(activity)
-    fun openChooser(fragment: Fragment) = startChooser(fragment)
-    fun openChooser(fragment: android.app.Fragment) = startChooser(fragment)
+    fun openChooser(activity: Activity) = startActivityChooser(activity)
+    fun openChooser(fragment: Fragment) = startFragmentChooser(fragment)
+    fun openChooser(fragment: android.app.Fragment) = startFragmentChooser(fragment)
     fun openDocuments(activity: Activity) = startDocuments(activity)
     fun openDocuments(fragment: Fragment) = startDocuments(fragment)
     fun openDocuments(fragment: android.app.Fragment) = startDocuments(fragment)
