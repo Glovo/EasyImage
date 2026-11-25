@@ -1,6 +1,6 @@
 <div align="center">
 
-# 📚 EasyImage
+# EasyImage
 
 **Android library to pick images and videos from camera, gallery or documents · Glovo fork**
 
@@ -9,13 +9,13 @@ system chooser, and hands the result back as files, without the usual `Intent` b
 Glovo's fork of [jkwiecien/EasyImage](https://github.com/jkwiecien/EasyImage) with a few fixes of its own.
 It is **not** a service: nothing here is deployed, and the repo has no tests and no CI.
 
-[![Kotlin](https://img.shields.io/badge/Kotlin-1.3.21-7F52FF?logo=kotlin&logoColor=white)](build.gradle)
-[![Android Gradle Plugin](https://img.shields.io/badge/Android_Gradle_Plugin-3.3.2-3DDC84?logo=android&logoColor=white)](build.gradle)
-[![Gradle](https://img.shields.io/badge/Gradle-4.10.2-02303A?logo=gradle&logoColor=white)](gradle/wrapper/gradle-wrapper.properties)
-[![minSdk](https://img.shields.io/badge/minSdk-15-3DDC84?logo=android&logoColor=white)](build.gradle)
-[![targetSdk](https://img.shields.io/badge/targetSdk-28-3DDC84?logo=android&logoColor=white)](build.gradle)
+[![Kotlin](https://img.shields.io/badge/Kotlin-7F52FF?logo=kotlin&logoColor=white)](build.gradle)
+[![Android Gradle Plugin](https://img.shields.io/badge/Android_Gradle_Plugin-3DDC84?logo=android&logoColor=white)](build.gradle)
+[![Gradle](https://img.shields.io/badge/Gradle-02303A?logo=gradle&logoColor=white)](gradle/wrapper/gradle-wrapper.properties)
+[![minSdk](https://img.shields.io/badge/minSdk-3DDC84?logo=android&logoColor=white)](build.gradle)
+[![targetSdk](https://img.shields.io/badge/targetSdk-3DDC84?logo=android&logoColor=white)](build.gradle)
 <br/>
-[![Version](https://img.shields.io/badge/version-3.0.3-blue)](build.gradle)
+[![Version](https://img.shields.io/badge/version-blue)](build.gradle)
 [![Publication](https://img.shields.io/badge/maven--publish-EasyImageLegacy-informational)](library/build.gradle)
 [![Fork](https://img.shields.io/badge/fork_of-jkwiecien%2FEasyImage-lightgrey?logo=github)](https://github.com/jkwiecien/EasyImage)
 
@@ -268,7 +268,7 @@ artifact `EasyImageLegacy`, version `version_name`, and the `bundleReleaseAar` o
 ├── settings.gradle              # includes :sample and :library
 ├── gradle.properties            # AndroidX + Jetifier switches
 ├── gradle/wrapper/              # Gradle 4.10.2 wrapper
-├── library/                     # ⭐ the EasyImage AAR
+├── library/                     # source of truth: the EasyImage AAR
 │   ├── build.gradle             # Android library + maven-publish (EasyImageLegacy)
 │   └── src/main/
 │       ├── AndroidManifest.xml  # declares EasyImageFileProvider
